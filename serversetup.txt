@@ -1,0 +1,31 @@
+- Install pytorch:
+    apt-get update
+    apt-get install python3-torch python3-torchvision python3-torchaudio
+- Install flask:
+    apt-get install python3-flask
+    
+-install git 
+    apt-get install git
+
+-generate key:
+    ssh-keygen -t ed25519 -C "david.maruhn@stud.th-deg.de" -f ~/.ssh/gitkey
+-show public key:
+    cat ~/.ssh/gitkey.pub
+    copy the key
+-place key on github
+    GitHub: Settings → SSH and GPG keys → “New SSH key”
+-load key into agent:
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/gitkey
+-test connection:
+    ssh -T git@github.com
+
+-set username and mail:
+    git config --global user.name "merlin-von-deggendorf"
+    git config --global user.email "david.maruhn@stud.th-deg.de"
+
+-clone repository:
+    git clone git@github.com:merlin-von-deggendorf/multilabel_server.git
+
+-
+

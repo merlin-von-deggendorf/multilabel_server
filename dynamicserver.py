@@ -15,10 +15,9 @@ grapes.load_model(model_name)
 
 
 @app.route('/')
-@app.route('/wahl')
 def wahl():
     # Serve the classifier.html template
-    return render_template('wahl.html')
+    return render_template('glaumer.html')
 
 @app.route('/upload', methods=['POST'])
 def upload():
