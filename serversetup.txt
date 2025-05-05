@@ -37,6 +37,14 @@
 -install ssl:
     apt update
     apt install -y nginx certbot python3-certbot-nginx
+    certbot --nginx -d domain-of-the-server.de --non-interactive --agree-tos --register-unsafely-without-email --redirect
     set server_name in nginx-flask
-    copy nginx-flask to cp nginx-flask /etc/nginx/sites-available/nginx-flask
-    
+    cp nginx-flask /etc/nginx/sites-available/nginx-flask
+    ln -s /etc/nginx/sites-available/nginx-flask /etc/nginx/sites-enabled/nginx-flask
+    rm /etc/nginx/sites-available/default 
+    rm /etc/nginx/sites-enabled/default
+    sudo nginx -t
+    sudo systemctl reload nginx
+
+
+
