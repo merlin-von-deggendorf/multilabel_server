@@ -20,7 +20,7 @@
     git config --global core.sshCommand "ssh -i ~/.ssh/gitkey -o IdentitiesOnly=yes"
 -test connection:
     ssh -T git@github.com
-    
+
 -set username and mail:
     git config --global user.name "merlin-von-deggendorf"
     git config --global user.email "david.maruhn@stud.th-deg.de"
@@ -31,8 +31,7 @@
 -generate service
     chmod +x generate_service.sh
     ./generate_service.sh
-    (systemctl restart flaskserver) for service restart
-    git pull for server update
+
 
 
 -install ssl:
@@ -49,5 +48,7 @@
     simulate try run with:
     sudo certbot renew --dry-run
 
-
+-- update server with:
+    git pull
+    systemctl restart flaskserver
 
