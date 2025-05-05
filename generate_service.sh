@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 # Simple generator for a systemd service
 
-if [ $# -lt 1 ]; then
-    echo "Usage: $0 <service_name> [description]"
-    exit 1
-fi
 
-SERVICE_NAME=$1
+SERVICE_NAME="flaskserver"
 DESCRIPTION=${2:-"Service $SERVICE_NAME"}
 CWD=$(pwd)
 SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
