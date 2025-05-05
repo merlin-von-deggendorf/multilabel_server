@@ -17,9 +17,10 @@
 -load key into agent:
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/gitkey
+    git config --global core.sshCommand "ssh -i ~/.ssh/gitkey -o IdentitiesOnly=yes"
 -test connection:
     ssh -T git@github.com
-
+    
 -set username and mail:
     git config --global user.name "merlin-von-deggendorf"
     git config --global user.email "david.maruhn@stud.th-deg.de"
@@ -43,8 +44,10 @@
     ln -s /etc/nginx/sites-available/nginx-flask /etc/nginx/sites-enabled/nginx-flask
     rm /etc/nginx/sites-available/default 
     rm /etc/nginx/sites-enabled/default
-    sudo nginx -t
-    sudo systemctl reload nginx
+    nginx -t
+    systemctl reload nginx
+    simulate try run with:
+    sudo certbot renew --dry-run
 
 
 
