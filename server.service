@@ -1,0 +1,15 @@
+[Unit]
+Description=Microbify Service
+After=network.target
+
+[Service]
+WorkingDirectory=/root/microbify
+Type=simple
+ExecStart=/usr/bin/python3 /root/microbify/dynamicserver.py
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
