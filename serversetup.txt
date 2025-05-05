@@ -27,5 +27,9 @@
 -clone repository:
     git clone git@github.com:merlin-von-deggendorf/multilabel_server.git
 
--chmod +x generate_service.sh
+-generate service
+    chmod +x generate_service.sh
+    ./generate_service.sh
+    (systemctl restart flaskserver) for service restart
+    git pull for server update
 
