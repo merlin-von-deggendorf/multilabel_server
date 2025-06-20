@@ -48,14 +48,14 @@
 <h1>THD Self-Checkout</h1>
 <br><br>
   {% if carts %}
-    {% for cart in carts %}
+    {% for cart in carts|reverse %}
       <div class="cart">
         <h2>Cart {{ loop.index }} ({{ cart['items']|length }} items)</h2>
         <ul>
           {% for item in cart['items'] %}
             <li>
               <strong>{{ item.name }}</strong><br/>
-              ID: {{ item.id }} &mdash; Barcode: {{ item.barcode }}
+               Barcode: {{ item.barcode }}
             </li>
           {% endfor %}
         </ul>
