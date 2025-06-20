@@ -4,20 +4,34 @@ import resnet18
 import io
 from PIL import Image
 import argparse
+import json
 
 app = Flask(__name__)
 
 model_name = 'deeplearning'
-classes,trans=resnet18.ClassificationModel.load_classes(model_name)
-grapes = resnet18.ClassificationModel(num_classes=len(classes))
-grapes.load_model(model_name)
 
+@app.route('/wahl')
+def wahl():
+    return render_template('glaumer.html')
 
+# replace events with carts
+carts = []
+
+@app.route('/api/events', methods=['POST'])
+def receive_event():
+    try:
+        payload = request.data.decode('utf-8')
+        cart = json.loads(payload)
+        print(cart)
+        # optionally validate cart is a list or dict here
+        carts.append(cart)     # store the whole shopping cart
+        return '', 204
+    except Exception as e:
+        return jsonify({'message': f'Error parsing event data: {e}'}), 400
 
 @app.route('/')
-def wahl():
-    # Serve the classifier.html template
-    return render_template('glaumer.html')
+def show_carts():
+    return render_template('index.html', carts=carts)
 
 @app.route('/upload', methods=['POST'])
 def upload():

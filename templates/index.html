@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Shopping List Events</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    a, a:visited {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    h1 {
+      color: #444;
+      margin-top: 1em;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      background: #fff;
+      margin: 8px 0;
+      padding: 12px;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .cart {
+      margin-top: 2em;
+    }
+    .cart h2 {
+      font-size: 1.2em;
+      margin-bottom: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <a href="{{ url_for('static', filename='downloads/app-debug.apk') }}" download>Download app.apk</a><br>
+  <br>
+<h1>THD Self-Checkout</h1>
+<br><br>
+  {% if carts %}
+    {% for cart in carts %}
+      <div class="cart">
+        <h2>Cart {{ loop.index }} ({{ cart['items']|length }} items)</h2>
+        <ul>
+          {% for item in cart['items'] %}
+            <li>
+              <strong>{{ item.name }}</strong><br/>
+              ID: {{ item.id }} &mdash; Barcode: {{ item.barcode }}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No carts received yet.</p>
+  {% endif %}
+
+</body>
+</html>
