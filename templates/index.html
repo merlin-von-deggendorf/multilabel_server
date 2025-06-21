@@ -40,13 +40,36 @@
       font-size: 1.2em;
       margin-bottom: 0.5em;
     }
+
+    /* Add button styles for download links */
+    .download-links {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+    .download-links a.btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px;
+      background-color: #007BFF;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .download-links a.btn:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
-  <a href="{{ url_for('static', filename='downloads/app-debug.apk') }}" download>Download app.apk</a><br>
-  <br>
-<h1>THD Self-Checkout</h1>
-<br><br>
+  <h1>THD Self-Checkout</h1>
+  <br><br>
+  <div class="download-links">
+    <a class="btn" href="{{ url_for('static', filename='downloads/app-debug.apk') }}" download>Android-App.apk</a>
+    <a class="btn" href="{{ url_for('static', filename='downloads/video.mp4') }}" download>Video-Anleitung</a>
+    <a class="btn" href="{{ url_for('static', filename='downloads/Self-Scan.pdf') }}" download>PDF-Anleitung</a>
+  </div>
+
   {% if carts %}
     {% for cart in carts|reverse %}
       <div class="cart">
