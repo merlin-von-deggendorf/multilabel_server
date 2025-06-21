@@ -77,7 +77,7 @@
         <ul>
           {% for item in cart['items'] %}
             <li>
-              <strong>{{ item.name }}</strong><br/>
+              <strong>{{ item.name }}</strong> Preis: {{ item.preis }}<br/>
                Barcode: {{ item.barcode }}
             </li>
           {% endfor %}
