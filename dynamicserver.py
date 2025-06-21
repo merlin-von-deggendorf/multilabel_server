@@ -1,6 +1,5 @@
 import os
 from flask import Flask, render_template, jsonify, request
-import resnet18
 import io
 from PIL import Image
 import argparse
@@ -8,11 +7,8 @@ import json
 
 app = Flask(__name__)
 
-model_name = 'deeplearning'
 
-@app.route('/wahl')
-def wahl():
-    return render_template('glaumer.html')
+
 
 # replace events with carts
 carts = []
@@ -33,34 +29,7 @@ def receive_event():
 def show_carts():
     return render_template('index.html', carts=carts)
 
-@app.route('/upload', methods=['POST'])
-def upload():
-    # Check if the POST request contains the file part.
-    if 'file' not in request.files:
-        return jsonify({'message': 'No file part in request.'})
-    
-    file = request.files['file']
-    
-    # Check if a file is selected.
-    if file.filename == '':
-        return jsonify({'message': 'No file selected.'})
-    
-    # Save the file in the uploads directory.
-    try:
-        # Read the file directly into memory and open as an image
-        image_stream = io.BytesIO(file.read())
-        image = Image.open(image_stream)
-        
-        # Optionally, if the model expects a different format, perform any necessary conversion here
-        
-        # Pass the image directly to the classifier.
-        # You'll need to update classify_image in resnet18.ClassificationModel to work with a PIL Image.
-        result_index,result_name,translation = grapes.classify_ram_image(image)
 
-        
-        return jsonify({'message': f'{translation}'})
-    except Exception as e:
-        return jsonify({'message': f'Error during classification: {str(e)}'})
 
 
 
